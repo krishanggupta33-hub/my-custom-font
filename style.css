@@ -1,0 +1,99 @@
+/* 1. Import your custom font */
+@font-face {
+    font-family: 'HackClubFont';
+    src: url('KG.ttf') format('truetype'); /* UPDATE THIS FILENAME */
+}
+
+/* 2. Global Styles */
+body {
+    font-family: 'HackClubFont', sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    width: 800px;
+    background: #161b22;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    cursor: text; /* Makes the whole box feel clickable */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 { margin: 0; }
+
+.stats {
+    font-size: 24px;
+    display: flex;
+    gap: 20px;
+    color: #58a6ff;
+}
+
+/* 3. Game Board Styles */
+.word-display {
+    font-size: 40px;
+    line-height: 1.5;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.word { display: flex; }
+.letter { color: #6e7681; transition: color 0.1s; }
+.correct { color: #3fb950; }
+.incorrect { color: #f85149; background-color: rgba(248, 81, 73, 0.2); border-radius: 4px; }
+
+/* Blinking Cursor Effect */
+.active { border-left: 3px solid #58a6ff; animation: blink 1s infinite; }
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* 4. Controls */
+button {
+    background-color: #238636;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'HackClubFont', sans-serif;
+    width: 100%;
+}
+button:hover { background-color: #2ea043; }
+
+/* 5. Mobile & Hidden Input Hacks */
+.hidden-input {
+    position: absolute;
+    opacity: 0;
+    top: -1000px;
+}
+
+@media (max-width: 850px) {
+    .game-container {
+        width: 90%;
+        padding: 20px;
+    }
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .word-display {
+        font-size: 28px;
+        height: 120px;
+    }
+}
