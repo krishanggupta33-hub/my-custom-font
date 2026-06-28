@@ -1,10 +1,8 @@
-/* 1. Import your custom font */
 @font-face {
     font-family: 'HackClubFont';
-    src: url('KG.ttf') format('truetype'); /* UPDATE THIS FILENAME */
+    src: url('KG.ttf') format('truetype');
 }
 
-/* 2. Global Styles */
 body {
     font-family: 'HackClubFont', sans-serif;
     background-color: #0d1117;
@@ -22,7 +20,7 @@ body {
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    cursor: text; /* Makes the whole box feel clickable */
+    cursor: text;
 }
 
 header {
@@ -32,7 +30,9 @@ header {
     margin-bottom: 20px;
 }
 
-h1 { margin: 0; }
+h1 { 
+    margin: 0; 
+}
 
 .stats {
     font-size: 24px;
@@ -41,7 +41,6 @@ h1 { margin: 0; }
     color: #58a6ff;
 }
 
-/* 3. Game Board Styles */
 .word-display {
     font-size: 40px;
     line-height: 1.5;
@@ -53,16 +52,34 @@ h1 { margin: 0; }
     gap: 15px;
 }
 
-.word { display: flex; }
-.letter { color: #6e7681; transition: color 0.1s; }
-.correct { color: #3fb950; }
-.incorrect { color: #f85149; background-color: rgba(248, 81, 73, 0.2); border-radius: 4px; }
+.word { 
+    display: flex; 
+}
 
-/* Blinking Cursor Effect */
-.active { border-left: 3px solid #58a6ff; animation: blink 1s infinite; }
-@keyframes blink { 50% { border-color: transparent; } }
+.letter { 
+    color: #6e7681; 
+    transition: color 0.1s; 
+}
 
-/* 4. Controls */
+.correct { 
+    color: #3fb950; 
+}
+
+.incorrect { 
+    color: #f85149; 
+    background-color: rgba(248, 81, 73, 0.2); 
+    border-radius: 4px; 
+}
+
+.active { 
+    border-left: 3px solid #58a6ff; 
+    animation: blink 1s infinite; 
+}
+
+@keyframes blink { 
+    50% { border-color: transparent; } 
+}
+
 button {
     background-color: #238636;
     color: white;
@@ -74,9 +91,11 @@ button {
     font-family: 'HackClubFont', sans-serif;
     width: 100%;
 }
-button:hover { background-color: #2ea043; }
 
-/* 5. Mobile & Hidden Input Hacks */
+button:hover { 
+    background-color: #2ea043; 
+}
+
 .hidden-input {
     position: absolute;
     opacity: 0;
