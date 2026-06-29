@@ -5,6 +5,12 @@ const restartBtn = document.getElementById('restart-btn');
 const mobileInput = document.getElementById('mobile-input');
 const gameContainer = document.querySelector('.game-container');
 
+const resultsModal = document.getElementById('results-modal');
+const finalWpm = document.getElementById('final-wpm');
+const finalAccuracy = document.getElementById('final-accuracy');
+const highScoreDisplay = document.getElementById('high-score');
+const playAgainBtn = document.getElementById('play-again-btn');
+
 const wordBank = [
     "the", "quick", "brown", "fox", "hack", "club", "code", "ship", "font",
     "type", "speed", "hacker", "build", "create", "javascript", "developer",
@@ -18,6 +24,7 @@ let timer = null;
 let isPlaying = false;
 let charIndex = 0;
 let correctChars = 0;
+let totalKeystrokes = 0;
 
 gameContainer.addEventListener('click', () => {
     mobileInput.focus();
@@ -50,10 +57,13 @@ function initGame() {
     timeLeft = 60;
     charIndex = 0;
     correctChars = 0;
+    totalKeystrokes = 0;
     isPlaying = false;
     timeDisplay.innerText = timeLeft;
     wpmDisplay.innerText = 0;
     clearInterval(timer);
+    
+    resultsModal.classList.add('hidden');
 
     mobileInput.value = '';
     mobileInput.focus();
@@ -75,6 +85,21 @@ mobileInput.addEventListener('input', (e) => {
             } else {
                 clearInterval(timer);
                 mobileInput.blur(); 
+                
+                let finalWpmValue = wpmDisplay.innerText;
+                let accuracy = totalKeystrokes > 0 ? Math.round((correctChars / totalKeystrokes) * 100) : 0;
+                
+                let savedHighScore = localStorage.getItem('typefaceHighScore') || 0;
+                if (parseInt(finalWpmValue) > parseInt(savedHighScore)) {
+                    localStorage.setItem('typefaceHighScore', finalWpmValue);
+                    savedHighScore = finalWpmValue;
+                }
+
+                finalWpm.innerText = finalWpmValue;
+                finalAccuracy.innerText = accuracy + '%';
+                highScoreDisplay.innerText = savedHighScore;
+                
+                resultsModal.classList.remove('hidden');
             }
         }, 1000);
     }
@@ -91,6 +116,8 @@ mobileInput.addEventListener('input', (e) => {
 
     if (charIndex >= characters.length || typedChar === null || timeLeft === 0) return;
 
+    totalKeystrokes++; 
+
     if (typedChar === characters[charIndex].innerText) {
         characters[charIndex].classList.add('correct');
         correctChars++;
@@ -106,5 +133,6 @@ mobileInput.addEventListener('input', (e) => {
 });
 
 restartBtn.addEventListener('click', initGame);
+playAgainBtn.addEventListener('click', initGame);
 
 initGame();

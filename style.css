@@ -15,12 +15,14 @@ body {
 }
 
 .game-container {
+    position: relative;
     width: 800px;
     background: #161b22;
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     cursor: text;
+    overflow: hidden;
 }
 
 header {
@@ -30,8 +32,8 @@ header {
     margin-bottom: 20px;
 }
 
-h1 { 
-    margin: 0; 
+h1 {
+    margin: 0;
 }
 
 .stats {
@@ -52,32 +54,32 @@ h1 {
     gap: 15px;
 }
 
-.word { 
-    display: flex; 
+.word {
+    display: flex;
 }
 
-.letter { 
-    color: #6e7681; 
-    transition: color 0.1s; 
+.letter {
+    color: #6e7681;
+    transition: color 0.1s;
 }
 
-.correct { 
-    color: #3fb950; 
+.correct {
+    color: #3fb950;
 }
 
-.incorrect { 
-    color: #f85149; 
-    background-color: rgba(248, 81, 73, 0.2); 
-    border-radius: 4px; 
+.incorrect {
+    color: #f85149;
+    background-color: rgba(248, 81, 73, 0.2);
+    border-radius: 4px;
 }
 
-.active { 
-    border-left: 3px solid #58a6ff; 
-    animation: blink 1s infinite; 
+.active {
+    border-left: 3px solid #58a6ff;
+    animation: blink 1s infinite;
 }
 
-@keyframes blink { 
-    50% { border-color: transparent; } 
+@keyframes blink {
+    50% { border-color: transparent; }
 }
 
 button {
@@ -90,10 +92,11 @@ button {
     cursor: pointer;
     font-family: 'HackClubFont', sans-serif;
     width: 100%;
+    transition: background-color 0.2s;
 }
 
-button:hover { 
-    background-color: #2ea043; 
+button:hover {
+    background-color: #2ea043;
 }
 
 .hidden-input {
@@ -102,26 +105,97 @@ button:hover {
     top: -1000px;
 }
 
-@media (max-width: 850px) {
-    .game-container {
-        width: 90%;
-        padding: 20px;
-    }
-    header {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .word-display {
-        font-size: 28px;
-        height: 120px;
-    }
+.hidden {
+    display: none !important;
 }
+
+#results-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(22, 27, 34, 0.97);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#results-modal h2 {
+    font-size: 36px;
+    color: #58a6ff;
+    margin-bottom: 30px;
+}
+
+.results-grid {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.result-box {
+    background: #0d1117;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #30363d;
+    min-width: 100px;
+}
+
+.result-label {
+    display: block;
+    color: #8b949e;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+}
+
+.result-value {
+    display: block;
+    font-size: 32px;
+    color: #3fb950;
+}
+
+#play-again-btn {
+    width: auto;
+    background-color: #58a6ff;
+    color: #0d1117;
+}
+
+#play-again-btn:hover {
+    background-color: #79c0ff;
+}
+
 .creator-credit {
     position: fixed;
     bottom: 15px;
     right: 20px;
     font-size: 14px;
-    color: #6e7681; 
-    font-family: sans-serif; 
+    color: #6e7681;
+    font-family: sans-serif;
     opacity: 0.7;
+}
+
+@media (max-width: 850px) {
+    .game-container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .word-display {
+        font-size: 28px;
+        height: 120px;
+    }
+    
+    .results-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
 }

@@ -21,9 +21,29 @@
         <div id="word-display" class="word-display"></div>
 
         <button id="restart-btn">Restart Game</button>
+
+        <div id="results-modal" class="hidden">
+            <h2>Test Complete</h2>
+            <div class="results-grid">
+                <div class="result-box">
+                    <span class="result-label">WPM</span>
+                    <span id="final-wpm" class="result-value">0</span>
+                </div>
+                <div class="result-box">
+                    <span class="result-label">Accuracy</span>
+                    <span id="final-accuracy" class="result-value">0%</span>
+                </div>
+                <div class="result-box">
+                    <span class="result-label">High Score</span>
+                    <span id="high-score" class="result-value">0</span>
+                </div>
+            </div>
+            <button id="play-again-btn">Play Again</button>
+        </div>
     </div>
 
-    <script src="script.js"></script>
     <div class="creator-credit">by Krishang Gupta</div>
+
+    <script src="script.js"></script>
 </body>
 </html>
